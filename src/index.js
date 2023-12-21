@@ -13,6 +13,7 @@ import Home from './components/Home';
 import Quiz from './components/Quiz';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import StartQuiz from './components/StartQuiz';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -22,7 +23,8 @@ root.render(
       <Header/>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/quiz" element={<Quiz />} />
+        <Route path="/startquiz" element={<StartQuiz />} />
+        <Route path="/startquiz/quiz/:selectedCategory" element={<Quiz />} />
       </Routes>
       <Footer/>
     </Router>
