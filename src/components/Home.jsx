@@ -81,7 +81,7 @@ const Home = () => {
                     <StyledTitle>
                         Assess your development skills with our technical quiz.
                     </StyledTitle>
-                    <StyledLink to="/quiz">
+                    <StyledLink to="/startquiz">
                         Pass the test
                     </StyledLink>
                 </LeftCol>

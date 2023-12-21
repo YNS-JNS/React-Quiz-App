@@ -69,10 +69,10 @@ const Header = () => {
             <StyledLink to="/">
                Home
             </StyledLink>
-            <StyledLink to="/quiz">
+            <StyledLink to="/">
                Profil
             </StyledLink>
-            <StyledLinkPass to="/quiz">
+            <StyledLinkPass to="/startquiz">
                Pass the test
             </StyledLinkPass>
          </div>

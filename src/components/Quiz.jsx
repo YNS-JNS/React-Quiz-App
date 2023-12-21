@@ -1,15 +1,77 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Quiz.css'
 // import questions from '../data/testData';
-import { quizFullStackData as questions, quizFrontendData, quizBackendData } from '../data/data'
+import { quizFullStackData, quizFrontendData, quizBackendData } from '../data/data'
+import { useParams } from 'react-router-dom';
 
+// import styled from 'styled-components';
+// const LoaderWrapper = styled.div`
+//    display: flex;
+//    justify-content: center;
+// `;
+
+// const Loader = styled.div`
+//    padding: 10px;
+//    border: 6px solid ${colors.primary};
+//    border-bottom-color: transparent;
+//    border-radius: 22px;
+//    animation: ${rotate} 1s infinite linear;
+//    height: 0;
+//    width: 0;
+// `;
+
+// const rotate = keyframes`
+//   from {
+//     transform: rotate(0deg);
+//   }
+
+//   to {
+//     transform: rotate(360deg);
+//   }
+// `;
+
+// export default function Quiz({ selectedCategory = 'Frontend' }) {
 export default function Quiz() {
+
+    // const { selectedCategory } = useParams();
+    // console.log(selectedCategory)
+    // const selectedCategoryTest = 'Frontend';
+    // ...
+
+    const { selectedCategory } = useParams();
+
+    // Log selectedCategory only if it exists
+    useEffect(() => {
+        if (selectedCategory) {
+            console.log(selectedCategory);
+        }
+    }, [selectedCategory]);
+
+    // ...
+
+
     const questionTimeLimit = 59 // 5 secondes
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [showScore, setShowScore] = useState(false);
     const [score, setScore] = useState(0);
     const [timer, setTimer] = useState(questionTimeLimit); // : to store time limit
     const [timerProgress, setTimerProgress] = useState(100); // Initialisé à 100%
+
+    // const [testData, setTestData] = useState(selectedCategory)
+    // console.log('From quiz param',selectedCategory)
+    // console.log('From quiz state',testData)
+
+
+
+    // Choose questions based on the selected category
+    const questions = selectedCategory === 'Fullstack'
+        // const questions = 'Fullstack'
+        ? quizFullStackData
+        : selectedCategory === 'Frontend'
+            ? quizFrontendData
+            : selectedCategory === 'Backend'
+                ? quizBackendData
+                : [];
 
 
     // To rerender component
@@ -56,32 +118,36 @@ export default function Quiz() {
     };
 
     return (
-        <div className='wrapped-section'>
-            <div className='quiz-section'>
-                {showScore ? (
-                    <div className='score-section'>
-                        You scored {score} out of {questions.length}
+        <div className='wrapped-section' >
+            {
+                selectedCategory && (
+                    <div className='quiz-section'>
+                        {showScore ? (
+                            <div className='score-section'>
+                                You scored {score} out of {questions.length}
+                            </div>
+                        ) : (
+                            <>
+                                <div className='question-section'>
+                                    <div className='question-count'>
+                                        <span>Question {currentQuestion + 1}</span>/{questions.length}
+                                    </div>
+                                    <div className='question-text'>{questions[currentQuestion].questionText}</div>
+                                </div>
+                                <div className='answer-section'>
+                                    <div className='timer'>
+                                        <progress value={timerProgress} max="100"></progress>
+                                    </div>
+                                    {questions[currentQuestion].answerOptions.map((answerOption) => (
+                                        <button onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
+                                    ))}
+                                </div>
+                            </>
+                        )}
                     </div>
-                ) : (
-                    <>
-                        <div className='question-section'>
-                            <div className='question-count'>
-                                <span>Question {currentQuestion + 1}</span>/{questions.length}
-                            </div>
-                            <div className='question-text'>{questions[currentQuestion].questionText}</div>
-                        </div>
-                        <div className='answer-section'>
-                            <div className='timer'>
-                                <progress value={timerProgress} max="100"></progress>
-                            </div>
-                            {questions[currentQuestion].answerOptions.map((answerOption) => (
-                                <button onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
-                            ))}
-                        </div>
-                    </>
-                )}
-            </div>
-        </div>
+                )
+            }
 
-    );
+        </div>
+    )
 }
