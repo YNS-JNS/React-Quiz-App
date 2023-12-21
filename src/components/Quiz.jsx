@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Quiz.css'
-import questions from '../data/testData';
+// import questions from '../data/testData';
+import { quizFullStackData as questions, quizFrontendData, quizBackendData } from '../data/data'
 
 export default function Quiz() {
     const questionTimeLimit = 59 // 5 secondes
-
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [showScore, setShowScore] = useState(false);
     const [score, setScore] = useState(0);
@@ -56,29 +56,32 @@ export default function Quiz() {
     };
 
     return (
-        <div className='app'>
-            {showScore ? (
-                <div className='score-section'>
-                    You scored {score} out of {questions.length}
-                </div>
-            ) : (
-                <>
-                    <div className='question-section'>
-                        <div className='question-count'>
-                            <span>Question {currentQuestion + 1}</span>/{questions.length}
-                        </div>
-                        <div className='question-text'>{questions[currentQuestion].questionText}</div>
+        <div className='wrapped-section'>
+            <div className='quiz-section'>
+                {showScore ? (
+                    <div className='score-section'>
+                        You scored {score} out of {questions.length}
                     </div>
-                    <div className='answer-section'>
-                        <div className='timer'>
-                            <progress value={timerProgress} max="100"></progress>
+                ) : (
+                    <>
+                        <div className='question-section'>
+                            <div className='question-count'>
+                                <span>Question {currentQuestion + 1}</span>/{questions.length}
+                            </div>
+                            <div className='question-text'>{questions[currentQuestion].questionText}</div>
                         </div>
-                        {questions[currentQuestion].answerOptions.map((answerOption) => (
-                            <button onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
-                        ))}
-                    </div>
-                </>
-            )}
+                        <div className='answer-section'>
+                            <div className='timer'>
+                                <progress value={timerProgress} max="100"></progress>
+                            </div>
+                            {questions[currentQuestion].answerOptions.map((answerOption) => (
+                                <button onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
+                            ))}
+                        </div>
+                    </>
+                )}
+            </div>
         </div>
+
     );
 }
