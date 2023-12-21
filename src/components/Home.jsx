@@ -66,6 +66,9 @@ const StyledLink = styled(Link)`
    border-radius: 5px;
    border: 3px solid #191919;
    box-shadow: 10px 10px #191919;
+   &:hover{
+    background-color: #F6F7C4;
+   }
 `;
 // ______________________________________________
 

@@ -1,10 +1,5 @@
-// Importing CSS and Assets: ___________________________
-// Importing Style 
 // Importing logo
 import LightLogo from '../assets/light-logo.png';
-// import devLogo from '../assets/DevRecruit.png';
-// import devLogo1 from '../assets/DevRecruit..png';
-// import dev from '../assets/Dev.png';
 // _____________________________________________________
 // Importing Link from React router dom library:
 import { Link } from 'react-router-dom';
@@ -12,6 +7,7 @@ import { Link } from 'react-router-dom';
 
 // Importing styled-components library:
 import styled from 'styled-components';
+// _____________________________________________________
 
 // NavContainer nav:
 const NavContainer = styled.nav`
@@ -19,7 +15,7 @@ const NavContainer = styled.nav`
    display: flex;
    justify-content: space-between;
    align-items: center;
-   background-color: #F6F7C4;
+   background-color: #7cc6fe;
    border-bottom: 3px solid #191919;
 `;
 
@@ -36,13 +32,25 @@ const StyledLink = styled(Link)`
    text-decoration: none;
    font-size: 18px;
    text-align: center;
-   background-color: #7cc6fe;
-   border-radius: 5px;
+   &:hover {
+      text-decoration: underline;
+      text-decoration-thickness: 5px;
+ }
+`;
+
+const StyledLinkPass = styled(Link)`
+   padding: 10px 15px;
+   margin-right: 8px;
+   color: #191919;
    border: 3px solid #191919;
    box-shadow: 5px 5px #191919;
+   border-raduis: 5px;
+   text-decoration: none;
+   font-size: 18px;
+   text-align: center;
+   background-color: #F6F7C4;
    &:hover {
-    background-color: #5a9ee8;
-    /* Add any additional styles you want for the hover effect */
+      background-color: #7cc6fe;
  }
 `;
 // border: 3px solid #191919;
@@ -59,14 +67,14 @@ const Header = () => {
          </Link>
          <div>
             <StyledLink to="/">
-               Accueil
+               Home
             </StyledLink>
             <StyledLink to="/quiz">
-               Profils
+               Profil
             </StyledLink>
-            <StyledLink to="/quiz">
+            <StyledLinkPass to="/quiz">
                Pass the test
-            </StyledLink>
+            </StyledLinkPass>
          </div>
       </NavContainer>
    );

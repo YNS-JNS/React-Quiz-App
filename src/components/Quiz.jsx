@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Quiz.css'
-import questions from '../data/testData';
+// import questions from '../data/testData';
+import { quizFullStackData as questions, quizFrontendData, quizBackendData } from '../data/data'
 
 export default function Quiz() {
     const questionTimeLimit = 59 // 5 secondes
-
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [showScore, setShowScore] = useState(false);
     const [score, setScore] = useState(0);
