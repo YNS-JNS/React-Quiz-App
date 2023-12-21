@@ -56,29 +56,32 @@ export default function Quiz() {
     };
 
     return (
-        <div className='app'>
-            {showScore ? (
-                <div className='score-section'>
-                    You scored {score} out of {questions.length}
-                </div>
-            ) : (
-                <>
-                    <div className='question-section'>
-                        <div className='question-count'>
-                            <span>Question {currentQuestion + 1}</span>/{questions.length}
-                        </div>
-                        <div className='question-text'>{questions[currentQuestion].questionText}</div>
+        <div className='wrapped-section'>
+            <div className='quiz-section'>
+                {showScore ? (
+                    <div className='score-section'>
+                        You scored {score} out of {questions.length}
                     </div>
-                    <div className='answer-section'>
-                        <div className='timer'>
-                            <progress value={timerProgress} max="100"></progress>
+                ) : (
+                    <>
+                        <div className='question-section'>
+                            <div className='question-count'>
+                                <span>Question {currentQuestion + 1}</span>/{questions.length}
+                            </div>
+                            <div className='question-text'>{questions[currentQuestion].questionText}</div>
                         </div>
-                        {questions[currentQuestion].answerOptions.map((answerOption) => (
-                            <button onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
-                        ))}
-                    </div>
-                </>
-            )}
+                        <div className='answer-section'>
+                            <div className='timer'>
+                                <progress value={timerProgress} max="100"></progress>
+                            </div>
+                            {questions[currentQuestion].answerOptions.map((answerOption) => (
+                                <button onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
+                            ))}
+                        </div>
+                    </>
+                )}
+            </div>
         </div>
+
     );
 }
