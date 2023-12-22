@@ -1,5 +1,5 @@
 // Importing logo
-import LightLogo from '../assets/light-logo.png';
+import LightLogo from '../assets/logoInit.png';
 // _____________________________________________________
 // Importing Link from React router dom library:
 import { Link } from 'react-router-dom';

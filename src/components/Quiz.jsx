@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Quiz.css'
-// import questions from '../data/testData';
 import { quizFullStackData, quizFrontendData, quizBackendData } from '../data/data'
 import { useParams } from 'react-router-dom';
 
@@ -33,13 +32,8 @@ import { useParams } from 'react-router-dom';
 // export default function Quiz({ selectedCategory = 'Frontend' }) {
 export default function Quiz() {
 
-    // const { selectedCategory } = useParams();
-    // console.log(selectedCategory)
-    // const selectedCategoryTest = 'Frontend';
     // ...
-
     const { selectedCategory } = useParams();
-
     // Log selectedCategory only if it exists
     useEffect(() => {
         if (selectedCategory) {
@@ -55,17 +49,11 @@ export default function Quiz() {
     const [showScore, setShowScore] = useState(false);
     const [score, setScore] = useState(0);
     const [timer, setTimer] = useState(questionTimeLimit); // : to store time limit
-    const [timerProgress, setTimerProgress] = useState(100); // Initialisé à 100%
-
-    // const [testData, setTestData] = useState(selectedCategory)
-    // console.log('From quiz param',selectedCategory)
-    // console.log('From quiz state',testData)
-
+    const [timerProgress, setTimerProgress] = useState(100); // : Initialisé à 100%
 
 
     // Choose questions based on the selected category
     const questions = selectedCategory === 'Fullstack'
-        // const questions = 'Fullstack'
         ? quizFullStackData
         : selectedCategory === 'Frontend'
             ? quizFrontendData
@@ -138,8 +126,8 @@ export default function Quiz() {
                                     <div className='timer'>
                                         <progress value={timerProgress} max="100"></progress>
                                     </div>
-                                    {questions[currentQuestion].answerOptions.map((answerOption) => (
-                                        <button onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
+                                    {questions[currentQuestion].answerOptions.map((answerOption, index) => (
+                                        <button key={index} onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
                                     ))}
                                 </div>
                             </>
