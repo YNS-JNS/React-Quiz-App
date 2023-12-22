@@ -1,3 +1,5 @@
+// Quiz questions fullstack : _______________________________________________________ 
+
 exports.quizFullStackData = [
     {
         questionText: "What is JavaScript?",
@@ -91,6 +93,8 @@ exports.quizFullStackData = [
     }
 ];
 
+// Quiz questions frontend : _______________________________________________________ 
+
 exports.quizFrontendData = [
     {
         questionText: "What does HTML stand for?",
@@ -183,6 +187,9 @@ exports.quizFrontendData = [
         ]
     }
 ];
+
+// Quiz questions backend : _______________________________________________________ 
+
 
 exports.quizBackendData = [
     {

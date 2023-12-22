@@ -1,49 +1,63 @@
-// Home.jsx
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+// import { Link } from 'react-router-dom';
+import Category from './Category';
+// import '../styles/StartQuiz.css'
+
+// Importing images
+import backendImg from '../assets/backend.jpg';
+import frontendImg from '../assets/frontend.jpg';
+import fullstackImg from '../assets/fullstack.jpg';
+
+// Importing styled-components library:
+import styled from 'styled-components';
+// _____________________________________________________
+
+// NavContainer nav:
+const WrappedCat = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    background-color: #7cc6fe;
+    min-height: 100vh; 
+`;
 
 // export default function StartQuiz({ onStartQuiz }) {
 export default function StartQuiz() {
 
-    // State to store the selected category
-    const [selectedCategory, setSelectedCategory] = useState('');
-
-    // Function to handle category selection
-    const handleCategorySelect = (category) => {
-        setSelectedCategory(category);
-        console.log(selectedCategory)
-    };
-
     // Example data
-    const categories = ['Fullstack', 'Frontend', 'Backend'];
+    // const categories = ['Fullstack', 'Frontend', 'Backend'];
+    const categories = [
+        {
+            title: 'Fullstack',
+            // description: 'Description for Fullstack category.',
+            image: fullstackImg
+        },
+        {
+            title: 'Frontend',
+            // description: 'Description for Frontend category.',
+            image: frontendImg
+            
+        },
+        {
+            title: 'Backend',
+            // description: 'Description for Backend category.',
+            image: backendImg
+            
+        }
+    ];
+
 
     return (
-        <div className='wrapped-section'>
-            <div className='home-section'>
-                <h1>Welcome to the Quiz App!</h1>
-                {/* <label>
-                    Name:
-                    <input type="text" value={userName} onChange={(e) => setUserName(e.target.value)} />
-                </label>
-                <label>
-                    Sector:
-                    <input type="text" value={userSector} onChange={(e) => setUserSector(e.target.value)} />
-                </label> */}
-                <div>
-                    <h1>Select Category</h1>
-                    {categories.map((category, index) => (
-                        <div key={index} onClick={() => handleCategorySelect(category)}>
-                            {category}
-                        </div>
-                    ))}
-                    <p>Selected Category: {selectedCategory}</p>
-                </div>
+        <WrappedCat>
+            {categories.map((category, index) => (
+                <Category key={index} category={category} />
+            ))}
+            {/* <p>Selected Category: {selectedCategory}</p> */}
 
-                <Link to={`/startquiz/quiz/${selectedCategory}`} >
-                    {/* <button onClick={handleStartQuiz}>Start Quiz</button> */}
-                    <button>Start Quiz</button>
-                </Link>
-            </div>
-        </div>
+            {/* <Link to={`/startquiz/quiz/${selectedCategory}`} >
+                <button>Start Quiz</button>
+            </Link> */}
+        </WrappedCat>
     );
 }
